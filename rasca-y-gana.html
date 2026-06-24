@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirty Desires of Elyy 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+body{min-height:100vh;background:#060010;font-family:'Rajdhani',sans-serif;color:#fff;overflow-x:hidden;}
+
+/* ── Fondo ── */
+.bg{position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 25% 15%,#3a008888 0%,transparent 45%),
+    radial-gradient(ellipse at 75% 85%,#20006055 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 50%,#0a001a 0%,#060010 100%);}
+.sl{position:fixed;left:0;right:0;height:1px;z-index:0;
+  background:linear-gradient(90deg,transparent,#a040ff,#fff,#a040ff,transparent);
+  opacity:.07;animation:sc 12s linear infinite;}
+.sl:nth-child(2){animation-delay:6s;opacity:.04;}
+@keyframes sc{0%{top:-1%}100%{top:101%}}
+
+/* partículas */
+.pt{position:fixed;border-radius:50%;pointer-events:none;animation:rise linear infinite;opacity:0;}
+@keyframes rise{0%{transform:translateY(105vh);opacity:0}8%{opacity:.8}92%{opacity:.3}100%{transform:translateY(-5vh);opacity:0}}
+
+/* ── Page ── */
+.page{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:24px 20px 60px;}
+
+/* ── Header ── */
+header{text-align:center;margin-bottom:14px;}
+.badge{display:inline-block;border:1px solid #a040ff77;border-radius:50px;padding:4px 18px;font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:#cc80ff;margin-bottom:8px;background:#a040ff14;box-shadow:0 0 14px #a040ff2a;}
+h1{font-family:'Great Vibes',cursive;font-size:clamp(2.6rem,8vw,5rem);
+  background:linear-gradient(135deg,#fff 0%,#e0aaff 35%,#a040ff 70%,#6000d0 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 22px #a040ffaa);line-height:1.1;margin-bottom:4px;}
+.sub{font-size:clamp(.82rem,2.5vw,.98rem);color:#cc80ff;letter-spacing:.4px;line-height:1.5;}
+.sub em{color:#ffffffaa;font-style:normal;}
+
+/* ── Round indicator ── */
+.round-row{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.rdots{display:flex;gap:8px;}
+.rdot{width:10px;height:10px;border-radius:50%;background:#2a1050;border:1.5px solid #a040ff55;transition:all .5s;}
+.rdot.done{background:#a040ff;box-shadow:0 0 10px #a040ff;}
+.rdot.active{background:#cc80ff;box-shadow:0 0 14px #cc80ff;transform:scale(1.2);}
+#round-label{font-family:'Orbitron',sans-serif;font-size:.72rem;letter-spacing:2px;color:#a040ffcc;text-transform:uppercase;}
+
+/* ── Prompt ── */
+#prompt{font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:#a040ff;text-shadow:0 0 14px #a040ff;min-height:18px;text-align:center;margin-bottom:16px;transition:opacity .4s;}
+
+/* ── Cards ── */
+.scene{perspective:1400px;width:100%;display:flex;justify-content:center;}
+.cards-area{position:relative;transition:opacity .45s ease;}
+/* ── Móvil 9:16 ─────────────────────────────────────────── */
+@media(max-width:520px){
+  .page{padding:12px 14px 36px;}
+
+  /* Header compacto */
+  header{margin-bottom:6px;}
+  .badge{font-size:.56rem;letter-spacing:2.5px;padding:3px 12px;}
+  h1{font-size:clamp(1.9rem,10vw,3rem);margin-bottom:2px;}
+  .sub{font-size:.74rem;}
+
+  /* Indicador rondas */
+  .round-row{gap:8px;margin-bottom:3px;}
+  .rdot{width:8px;height:8px;}
+  #round-label{font-size:.58rem;letter-spacing:1.5px;}
+  #prompt{font-size:.62rem;letter-spacing:2px;margin-bottom:8px;}
+
+  /* Cartas: dimensionadas por JS, sólo escalar contenido interno */
+  .cb-icon{font-size:2.1rem;}
+  .cb-label{font-size:.4rem;letter-spacing:2px;}
+  .cf-icon{font-size:1.8rem;}
+  .cf-title{font-size:.44rem;letter-spacing:1px;line-height:1.35;}
+  .cf-sub{font-size:.58rem;}
+
+  /* Prize rack: sin wrap, tamaño flex */
+  #prize-rack{gap:6px;margin:12px 0 6px;flex-wrap:nowrap;}
+  .pr-slot{flex:1 1 0;min-width:0;padding:7px 4px 9px;border-radius:11px;}
+  .pr-icon{font-size:1.2rem;}
+  .pr-num{font-size:.4rem;letter-spacing:1.5px;}
+  .pr-name{font-size:.4rem;letter-spacing:.8px;}
+
+  /* Mid result */
+  #mid-result{margin:3px 0;}
+  .mid-won{font-size:.58rem;letter-spacing:1.5px;}
+  .mid-prize{font-size:.85rem;}
+
+  /* Siguiente ronda */
+  #next-btn{width:86%;padding:11px 18px;font-size:.6rem;letter-spacing:1.5px;}
+
+  /* Steps — más pequeños */
+  .steps{gap:5px;margin:12px 0 8px;}
+  .step{width:90px;font-size:.65rem;padding:6px 7px;border-radius:9px;}
+  .step .ic{font-size:.95rem;margin-bottom:2px;}
+
+  /* Telegram btn */
+  .tg-btn{width:94%;justify-content:center;padding:12px 18px;font-size:.9rem;margin-bottom:8px;}
+
+  /* Overlay → bottom sheet en móvil */
+  #overlay{align-items:flex-end;}
+  .rbox{
+    width:100%;max-width:100%;
+    border-radius:26px 26px 0 0;
+    padding:28px 18px 38px;
+    max-height:90vh;overflow-y:auto;
+    animation:slideUp .4s cubic-bezier(.34,1.2,.64,1);
+  }
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .r-head{font-size:1.7rem;margin-bottom:12px;}
+  .r-prizes{gap:8px;margin-bottom:14px;}
+  .fp{padding:10px 12px;gap:10px;}
+  .fp-icon{font-size:1.35rem;}
+  .fp-name{font-size:.58rem;letter-spacing:1px;}
+  .fp-msg{font-size:.66rem;}
+  .r-note{font-size:.74rem;margin-bottom:14px;line-height:1.5;}
+  .r-claim{padding:13px 22px;font-size:.75rem;letter-spacing:1.5px;margin-bottom:10px;}
+  .r-tg{width:100%;justify-content:center;padding:11px 18px;font-size:.88rem;}
+}
+
+/* Pantallas muy pequeñas ≤360px */
+@media(max-width:360px){
+  .pr-name,.pr-num{font-size:.36rem;}
+  .cb-icon{font-size:1.7rem;}
+  .cf-icon{font-size:1.5rem;}
+  .cf-title{font-size:.4rem;}
+}
+
+.cw{position:absolute;top:20px;width:155px;height:240px;cursor:pointer;
+  transition:left .42s cubic-bezier(.4,0,.2,1),opacity .45s,transform .45s;}
+.cw:not(.used):not(.shuffling):hover{transform:translateY(-14px) scale(1.05);transition:transform .2s ease,left .42s cubic-bezier(.4,0,.2,1),opacity .45s;}
+.cw.dim{opacity:.22;filter:grayscale(.7);}
+.cw.used{cursor:default;pointer-events:none;}
+
+.ci{width:100%;height:100%;position:relative;}
+.ci.flipped{animation:cardFlip .85s cubic-bezier(.4,0,.2,1) forwards;}
+@keyframes cardFlip{0%{transform:scaleX(1)}50%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+
+.cf{position:absolute;inset:0;border-radius:22px;overflow:hidden;}
+
+/* Trasera */
+.cb{background:linear-gradient(145deg,#1a0040,#0c0028);border:2px solid #a040ff88;
+  box-shadow:0 0 28px #a040ff33,0 10px 36px #000a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.cb::before{content:'';position:absolute;inset:0;opacity:.06;
+  background-image:repeating-linear-gradient(0deg,#a040ff 0,#a040ff 1px,transparent 1px,transparent 22px),
+                   repeating-linear-gradient(90deg,#a040ff 0,#a040ff 1px,transparent 1px,transparent 22px);}
+.cb::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,#a040ff18 0%,transparent 65%);}
+.cb-icon{font-size:3.2rem;filter:drop-shadow(0 0 18px #fff) drop-shadow(0 0 8px #a040ff);position:relative;z-index:1;}
+.cb-label{font-family:'Orbitron',sans-serif;font-size:.55rem;letter-spacing:4px;color:#a040ffcc;position:relative;z-index:1;text-transform:uppercase;}
+
+/* Delantera dinámica — hidden until flip (2D approach, no preserve-3d) */
+.cf-front{display:none;
+  background:linear-gradient(145deg,#110028,#1c0040);
+  border:2px solid #a040ff; /* overridden by JS */
+  box-shadow:0 0 30px #a040ff44,0 8px 28px #000a; /* overridden by JS */
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:20px 14px;text-align:center;}
+.cf-icon{font-size:2.7rem;line-height:1;}
+.cf-title{font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:2px;line-height:1.5;font-weight:700;}
+.cf-sub{font-size:.75rem;opacity:.8;color:#cc80ff;}
+
+/* ── Prize Rack ── */
+#prize-rack{display:flex;gap:12px;justify-content:center;margin:20px 0 10px;flex-wrap:wrap;}
+.pr-slot{
+  width:130px;border-radius:14px;padding:10px 10px 12px;text-align:center;
+  background:#0e0025;border:1.5px solid #2a1050;
+  transition:all .6s cubic-bezier(.34,1.56,.64,1);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.pr-slot.filled{background:#1a0040;border-color:var(--pc,#a040ff);box-shadow:0 0 18px var(--pc-glow,#a040ff33);}
+.pr-num{font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:3px;color:#4a2070;text-transform:uppercase;}
+.pr-slot.filled .pr-num{color:var(--pc,#a040ff);}
+.pr-icon{font-size:1.6rem;line-height:1;filter:drop-shadow(0 0 8px currentColor);}
+.pr-name{font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;color:#5a3080;line-height:1.3;}
+.pr-slot.filled .pr-name{color:var(--pc,#cc80ff);}
+
+/* entre rondas */
+#mid-result{
+  text-align:center;margin:6px 0;min-height:36px;
+  transition:opacity .4s;
+}
+#mid-result.hidden{opacity:0;pointer-events:none;}
+.mid-won{font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;}
+.mid-prize{font-size:1rem;font-weight:700;margin-top:2px;}
+
+/* botón siguiente ronda */
+#next-btn{
+  display:block;margin:10px auto 0;
+  padding:10px 28px;
+  background:linear-gradient(135deg,#7020d0,#a040ff);
+  border:1px solid #ffffff33;border-radius:50px;
+  font-family:'Orbitron',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;cursor:pointer;
+  box-shadow:0 0 22px #a040ff55;
+  transition:transform .2s,opacity .3s,box-shadow .2s;
+  animation:pulse 1.8s ease infinite;
+}
+#next-btn.hidden{opacity:0;pointer-events:none;}
+#next-btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 36px #a040ffaa;}
+@keyframes pulse{0%,100%{box-shadow:0 0 22px #a040ff55}50%{box-shadow:0 0 40px #a040ffaa}}
+
+/* ── Steps (abajo, compactos) ── */
+.steps{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0 18px;opacity:.6;}
+.step{background:#ffffff05;border:1px solid #a040ff22;border-radius:10px;padding:8px 12px;width:120px;font-size:.76rem;color:#9060c8;line-height:1.4;text-align:center;}
+.step .ic{font-size:1.1rem;display:block;margin-bottom:3px;}
+
+/* Telegram btn */
+.tg-btn{display:inline-flex;align-items:center;gap:9px;padding:13px 32px;
+  background:linear-gradient(135deg,#7020d0,#a040ff,#c070ff);
+  border:1px solid #ffffff33;border-radius:50px;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.05rem;
+  color:#fff;text-decoration:none;cursor:pointer;
+  box-shadow:0 0 32px #a040ff55,0 4px 22px #00000055,inset 0 1px 0 #ffffff22;
+  transition:transform .2s,box-shadow .2s;letter-spacing:.5px;margin-bottom:10px;}
+.tg-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 50px #a040ffaa;}
+.tg-btn:active{transform:translateY(0) scale(.98);}
+
+/* ── Overlay final ── */
+#overlay{display:none;position:fixed;inset:0;z-index:300;background:#060010dd;backdrop-filter:blur(10px);align-items:center;justify-content:center;}
+#overlay.show{display:flex;animation:fdIn .35s ease;}
+@keyframes fdIn{from{opacity:0}to{opacity:1}}
+
+.rbox{background:linear-gradient(145deg,#12002a,#08001a);border:2px solid #a040ff;border-radius:28px;padding:40px 28px;max-width:400px;width:94%;text-align:center;box-shadow:0 0 80px #a040ff44;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+.r-head{font-family:'Great Vibes',cursive;font-size:2.2rem;background:linear-gradient(135deg,#fff,#e0aaff,#a040ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;filter:drop-shadow(0 0 16px #a040ff88);}
+
+.r-prizes{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.fp{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;
+  background:#1a0038;border:1.5px solid #a040ff55;text-align:left;}
+.fp-icon{font-size:1.8rem;flex-shrink:0;}
+.fp-name{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:1.5px;line-height:1.4;}
+.fp-msg{font-size:.72rem;color:#9060c8;margin-top:2px;}
+
+.r-note{font-size:.84rem;color:#8060a8;line-height:1.6;margin-bottom:22px;}
+
+.r-tg{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;margin-bottom:14px;
+  background:linear-gradient(135deg,#7020d0,#a040ff,#c070ff);
+  border:1px solid #ffffff22;border-radius:50px;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;
+  color:#fff;text-decoration:none;
+  box-shadow:0 0 28px #a040ff66;transition:transform .2s;}
+.r-tg:hover{transform:translateY(-2px);}
+
+.r-claim{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 40px;margin-bottom:12px;width:100%;justify-content:center;
+  background:linear-gradient(135deg,#6010c0,#a040ff,#cc60ff);
+  border:2px solid #fff4;border-radius:50px;
+  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:2px;
+  color:#fff;text-decoration:none;cursor:pointer;
+  box-shadow:0 0 45px #a040ff88,0 6px 26px #00000077,inset 0 1px 0 #ffffff33;
+  transition:transform .2s,box-shadow .2s;
+  animation:pclaim 2s ease infinite;
+}
+.r-claim:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 65px #a040ffcc,0 10px 32px #00000077;}
+@keyframes pclaim{0%,100%{box-shadow:0 0 45px #a040ff88,0 6px 26px #00000077}50%{box-shadow:0 0 70px #a040ffbb,0 8px 30px #00000077}}
+.r-again{display:block;font-size:.72rem;color:#5040a0;cursor:pointer;text-decoration:underline;letter-spacing:1px;background:none;border:none;}
+.r-again:hover{color:#9060d0;}
+.fp-mala{opacity:.45;border-color:#2a2060 !important;box-shadow:none !important;background:#080015;}
+
+/* confeti */
+.cp{position:fixed;pointer-events:none;z-index:400;border-radius:2px;animation:fall 2.4s ease forwards;}
+@keyframes fall{0%{transform:translateY(-5vh) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(700deg);opacity:0}}
+
+.foot{margin-top:24px;font-size:.7rem;color:#3a1860;letter-spacing:1px;text-align:center;}
+
+/* ── Overrides móvil al final del cascade ─────────────────── */
+@media(max-width:560px){
+  /* Prize rack: 3 slots en fila sin wrap */
+  #prize-rack{flex-wrap:nowrap;gap:6px;}
+  .pr-slot{width:auto;flex:1 1 0;min-width:0;padding:7px 4px 9px;border-radius:11px;}
+  .pr-icon{font-size:1.2rem;}
+  .pr-num{font-size:.38rem;letter-spacing:1.5px;}
+  .pr-name{font-size:.38rem;letter-spacing:.8px;}
+  /* Contenido interno de cartas */
+  .cb-icon{font-size:2.1rem;}
+  .cb-label{font-size:.38rem;letter-spacing:2px;}
+  .cf-icon{font-size:1.8rem;}
+  .cf-title{font-size:.42rem;letter-spacing:1px;line-height:1.35;}
+  .cf-sub{font-size:.56rem;}
+}
+@media(max-width:360px){
+  .cb-icon{font-size:1.7rem;}
+  .cf-icon{font-size:1.5rem;}
+  .cf-title{font-size:.38rem;}
+  .pr-num,.pr-name{font-size:.34rem;}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="sl"></div><div class="sl"></div>
+
+<div class="page">
+
+  <header>
+    <div class="badge">✦ Contenido Exclusivo ✦</div>
+    <h1>Dirty Desires of Elyy</h1>
+    <p class="sub">🔥 Gira la ruleta y gana lo que buscas 🔥<br><em>Elige tu carta… si te atreves 😈</em></p>
+  </header>
+
+  <!-- indicador de rondas -->
+  <div class="round-row">
+    <div class="rdots">
+      <span class="rdot active" id="rd0"></span>
+      <span class="rdot" id="rd1"></span>
+      <span class="rdot" id="rd2"></span>
+    </div>
+    <div id="round-label">Turno 1 de 3</div>
+  </div>
+
+  <div id="prompt">Mezclando las cartas...</div>
+
+  <div class="scene">
+    <div class="cards-area" id="area"></div>
+  </div>
+
+  <!-- acumulador de premios -->
+  <div id="prize-rack">
+    <div class="pr-slot" id="pr0">
+      <span class="pr-num">Turno 1</span>
+      <span class="pr-icon">💗</span>
+      <span class="pr-name">Por ganar</span>
+    </div>
+    <div class="pr-slot" id="pr1">
+      <span class="pr-num">Turno 2</span>
+      <span class="pr-icon">💗</span>
+      <span class="pr-name">Por ganar</span>
+    </div>
+    <div class="pr-slot" id="pr2">
+      <span class="pr-num">Turno 3</span>
+      <span class="pr-icon">💗</span>
+      <span class="pr-name">Por ganar</span>
+    </div>
+  </div>
+
+  <!-- banner entre rondas -->
+  <div id="mid-result" class="hidden">
+    <div class="mid-won">✦ Ganaste ✦</div>
+    <div class="mid-prize" id="mid-prize-text"></div>
+  </div>
+
+  <!-- botón siguiente ronda -->
+  <button id="next-btn" class="hidden" onclick="nextRound()">Siguiente turno ✦</button>
+
+  <!-- pasos + Telegram (debajo) -->
+  <div class="steps">
+    <div class="step"><span class="ic">🃏</span>Cartas se mezclan</div>
+    <div class="step"><span class="ic">👆</span>Elige una carta</div>
+    <div class="step"><span class="ic">🎁</span>¡3 turnos, 3 premios!</div>
+  </div>
+
+  <a href="https://t.me/+td1deajjMFA4NGNk" class="tg-btn" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    💜 Únete al Telegram
+  </a>
+
+  <p class="foot">© 2026 · Dirty Desires of Elyy · +18</p>
+</div>
+
+<!-- ── OVERLAY FINAL ── -->
+<div id="overlay">
+  <div class="rbox">
+    <div class="r-head" id="r-head">¡Reclama tu premio! 🎁</div>
+    <div class="r-prizes" id="r-prizes"></div>
+    <p class="r-note" id="r-note">Haz clic abajo y reclama tus premios ahora<br>¡antes de que expiren! ⏳💜</p>
+    <a class="r-claim" href="https://onlyfans.com/elymystique/c134" target="_blank" rel="noopener">
+      🎁 Reclama aquí
+    </a>
+    <a class="r-tg" href="https://t.me/+td1deajjMFA4NGNk" target="_blank" rel="noopener" style="margin-bottom:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      💜 Ir al Telegram
+    </a>
+  </div>
+</div>
+
+<script>
+const TG = 'https://t.me/+td1deajjMFA4NGNk';
+const OF = 'https://onlyfans.com/elymystique/c134';
+const SK = 'elyy_desires_v1';  // clave storage
+const CK = 'edv1';              // clave cookie
+const DB = 'elyy_db';           // nombre IndexedDB
+
+// ── 4 capas de almacenamiento ────────────────────────────────
+// Capa 1+2: localStorage y sessionStorage
+// Capa 3:   Cookie de 1 año
+// Capa 4:   IndexedDB (sobrevive a limpiezas parciales)
+// Para borrar el intento habría que vaciar las 4 a la vez.
+
+function saveResult(){
+  const payload = JSON.stringify({
+    ts: Date.now(),
+    w: wonPrizes.map(p=>({ ri:p.rIcon, rn:p.rName, co:p.color, rm:p.rMsg||'' }))
+  });
+  // L1: localStorage
+  try { localStorage.setItem(SK, payload); } catch(e){}
+  // L2: sessionStorage
+  try { sessionStorage.setItem(SK, payload); } catch(e){}
+  // L3: Cookie 1 año
+  try {
+    const exp = new Date(Date.now()+365*24*60*60*1000).toUTCString();
+    document.cookie=`${CK}=${encodeURIComponent(payload)};expires=${exp};path=/;SameSite=Strict`;
+  } catch(e){}
+  // L4: IndexedDB
+  idbWrite(payload);
+}
+
+function idbWrite(payload){
+  try {
+    const r=indexedDB.open(DB,1);
+    r.onupgradeneeded=e=>e.target.result.createObjectStore('d');
+    r.onsuccess=e=>{
+      try { e.target.result.transaction('d','readwrite').objectStore('d').put(payload,SK); } catch(e2){}
+    };
+  } catch(e){}
+}
+
+function idbCheck(){
+  try {
+    const r=indexedDB.open(DB,1);
+    r.onupgradeneeded=e=>e.target.result.createObjectStore('d');
+    r.onsuccess=e=>{
+      try {
+        const g=e.target.result.transaction('d','readonly').objectStore('d').get(SK);
+        g.onsuccess=ev=>{
+          if(!ev.target.result) return;
+          let data;
+          try { data=JSON.parse(ev.target.result); } catch(e2){ return; }
+          if(!data||!Array.isArray(data.w)||data.w.length<3) return;
+          wonPrizes=data.w.map(d=>({ rIcon:d.ri, rName:d.rn, color:d.co, rMsg:d.rm }));
+          saveResult(); // restora las otras capas
+          document.getElementById('area').style.visibility='hidden';
+          showFinalOverlay();
+        };
+      } catch(e2){}
+    };
+  } catch(e){}
+}
+
+function readCookie(){
+  try {
+    const m=document.cookie.match(new RegExp('(?:^|; )'+CK+'=([^;]*)'));
+    return m ? JSON.parse(decodeURIComponent(m[1])) : null;
+  } catch(e){ return null; }
+}
+
+// ── Comprobar al cargar ──────────────────────────────────────
+function checkPlayed(){
+  let data=null;
+  // L1
+  try { data=JSON.parse(localStorage.getItem(SK)); } catch(e){}
+  // L2
+  if(!data) try { data=JSON.parse(sessionStorage.getItem(SK)); } catch(e){}
+  // L3
+  if(!data) data=readCookie();
+
+  if(!data||!Array.isArray(data.w)||data.w.length<3){
+    idbCheck(); // L4 async: si encuentra algo muestra el overlay luego
+    return false;
+  }
+  wonPrizes=data.w.map(d=>({ rIcon:d.ri, rName:d.rn, color:d.co, rMsg:d.rm }));
+  return true;
+}
+
+// ── Premios reales por ronda ─────────────────────────────────
+const HABLA = { icon:'💬', label:'Habla\nConmigo',              sub:'¡Acceso directo! 💜',
+                rIcon:'💬', rName:'Habla Conmigo',               color:'#9040e0' };
+const VIP   = { icon:'👑', label:'Acceso Gratis\na mi VIP',     sub:'¡El Jackpot! 🎊',
+                rIcon:'👑', rName:'Acceso Gratis a mi VIP',      color:'#ffffff' };
+const MALA  = { icon:'😔', label:'GRACIAS POR\nINTENTARLO',     sub:'¡Suerte la próxima!',
+                rIcon:'😔', rName:'Gracias por intentarlo',
+                rMsg:'Esta vez no fue 💔 Pero ya tienes 2 premios esperándote — ¡no los dejes ir! ⏳💜',
+                color:'#5050a0' };
+
+// ── Señuelos visuales por ronda (0% — nunca se ganan) ───────
+// R1 señuelos: VIP + Videollamada
+// R2 señuelos: Contenido Exclusivo + Videollamada
+// R3 señuelos: Cita Conmigo + Contenido Exclusivo
+const D = {
+  vip:      { icon:'👑', label:'Acceso Gratis\na mi VIP',   sub:'¡El Jackpot! 🎊',        color:'#ffffff' },
+  vcall:    { icon:'📹', label:'Videollamada\nConmigo',     sub:'Face to face 😈',          color:'#ff5090' },
+  contenido:{ icon:'🎬', label:'Contenido\nExclusivo',      sub:'¡Solo para ti! 🔥',        color:'#e040b0' },
+  cita:     { icon:'💑', label:'Cita\nConmigo',             sub:'¡Una cita especial! 💜',   color:'#ff80a0' },
+};
+
+// ── Estado global ────────────────────────────────────────────
+// Layout responsivo — dimensiones nativas por pantalla
+const _VW    = window.innerWidth;
+const MOBILE = _VW <= 560;
+const CARD_W = MOBILE ? Math.floor((_VW - 28 - 32) / 3) : 155;
+const CARD_H = MOBILE ? Math.round(CARD_W * 1.548)       : 240;
+const GAP    = MOBILE ? 16 : 40;
+const SLOTS  = [0, CARD_W+GAP, (CARD_W+GAP)*2];
+const SEQ=[[0,2],[1,2],[0,1],[2,0],[1,2],[0,1],[2,1],[0,2]];
+
+let cardFaces = [];     // caras visuales [p,p,p] de esta ronda
+let forced    = null;   // resultado siempre garantizado, sin importar qué carta elige
+let wonPrizes = [];
+let currentRound = 0;
+let busy = false;
+let vSlot = [];
+
+// ── Partículas ───────────────────────────────────────────────
+(function(){
+  const C=['#a040ff','#cc80ff','#fff','#6000d0','#e0a0ff'];
+  for(let i=0;i<36;i++){
+    const p=document.createElement('div');p.className='pt';
+    const s=Math.random()*3+1;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}vw;
+      background:${C[~~(Math.random()*C.length)]};box-shadow:0 0 ${s*4}px currentColor;
+      animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*18}s;`;
+    document.body.appendChild(p);
+  }
+})();
+
+// ── Señuelos exactos por ronda ───────────────────────────────
+// R0: VIP + Videollamada   R1: Contenido + Videollamada   R2: Cita + Contenido
+function getRoundDecoys(round){
+  if(round===0) return [D.vip,      D.vcall];
+  if(round===1) return [D.contenido, D.vcall];
+  return              [D.cita,      D.contenido];
+}
+
+// ── Caras iniciales (mezcladas, boca abajo durante shuffle) ──
+function getCardFaces(round){
+  return shuffleArr([getForcedOutcome(round), ...getRoundDecoys(round)]);
+}
+
+// ── Resultado forzado por ronda ──────────────────────────────
+function getForcedOutcome(round){
+  if(round===0) return HABLA;
+  if(round===1) return VIP;
+  return MALA;
+}
+
+// ── Helper: intercambia cara de una carta ────────────────────
+function swapFace(i, p){
+  const ff=document.getElementById(`ff${i}`);
+  ff.style.borderColor=p.color;
+  ff.style.boxShadow=`0 0 32px ${p.color}44,0 8px 28px #000a`;
+  ff.querySelector('.cf-icon').textContent=p.icon;
+  const ft=document.getElementById(`ft${i}`);
+  ft.innerHTML=p.label.replace('\n','<br>');
+  ft.style.color=p.color;
+  ft.style.textShadow=p===MALA?'none':`0 0 12px ${p.color}88`;
+  const fs=document.getElementById(`fs${i}`);
+  fs.textContent=p.sub;
+  fs.style.color=p===MALA?'#7070b8':'';
+}
+
+// ── Reset total ──────────────────────────────────────────────
+function resetGame(){
+  document.getElementById('overlay').classList.remove('show');
+  document.querySelectorAll('.cp').forEach(c=>c.remove());
+  for(let i=0;i<3;i++){
+    const s=document.getElementById(`pr${i}`);
+    s.className='pr-slot';
+    s.style.cssText='';
+    s.innerHTML=`<span class="pr-num">Turno ${i+1}</span><span class="pr-icon">💗</span><span class="pr-name">Por ganar</span>`;
+  }
+  wonPrizes=[];
+  startRound(0);
+}
+
+// ── Iniciar ronda ────────────────────────────────────────────
+function startRound(roundNum){
+  currentRound=roundNum;
+  busy=true;
+
+  for(let i=0;i<3;i++){
+    const d=document.getElementById(`rd${i}`);
+    d.className='rdot'+(i<roundNum?' done':i===roundNum?' active':'');
+  }
+  document.getElementById('round-label').textContent=`Turno ${roundNum+1} de 3`;
+  document.getElementById('mid-result').classList.add('hidden');
+  document.getElementById('next-btn').classList.add('hidden');
+
+  const area=document.getElementById('area');
+  area.style.opacity='1';
+  area.style.width  = (CARD_W*3 + GAP*2) + 'px';
+  area.style.height = (CARD_H + 20) + 'px';
+  area.innerHTML='';
+
+  cardFaces = getCardFaces(roundNum);
+  forced    = getForcedOutcome(roundNum);
+  vSlot=[0,1,2];
+
+  for(let i=0;i<3;i++){
+    const p=cardFaces[i];
+    const w=document.createElement('div');
+    w.className='cw shuffling';w.id=`cw${i}`;
+    w.style.cssText=`width:${CARD_W}px;height:${CARD_H}px;left:${SLOTS[vSlot[i]]}px;opacity:0;transform:translateY(70px) scale(.9);
+      transition:left .42s cubic-bezier(.4,0,.2,1),opacity .5s,transform .5s;`;
+    w.innerHTML=`
+      <div class="ci" id="ci${i}">
+        <div class="cf cb">
+          <div class="cb-icon">💗</div>
+          <div class="cb-label">carta ${i+1}</div>
+        </div>
+        <div class="cf cf-front" id="ff${i}">
+          <div class="cf-icon">${p.icon}</div>
+          <div class="cf-title" id="ft${i}">${p.label.replace('\n','<br>')}</div>
+          <div class="cf-sub" id="fs${i}">${p.sub}</div>
+        </div>
+      </div>`;
+    w.addEventListener('click',()=>pick(i));
+    area.appendChild(w);
+
+    const ff=document.getElementById(`ff${i}`);
+    ff.style.borderColor=p.color;
+    ff.style.boxShadow=`0 0 32px ${p.color}44,0 8px 28px #000a`;
+    document.getElementById(`ft${i}`).style.color=p.color;
+    document.getElementById(`ft${i}`).style.textShadow=`0 0 12px ${p.color}88`;
+  }
+
+  for(let i=0;i<3;i++){
+    setTimeout(()=>{
+      const w=document.getElementById(`cw${i}`);
+      if(w){w.style.opacity='1';w.style.transform='';}
+    },180+i*120);
+  }
+  setTimeout(startShuffle,800);
+}
+
+// ── Mezcla ───────────────────────────────────────────────────
+function startShuffle(){
+  setPrompt('Mezclando las cartas...');
+  let step=0;
+  function next(){
+    if(step>=SEQ.length){
+      busy=false;
+      document.querySelectorAll('.cw').forEach(c=>c.classList.remove('shuffling'));
+      setPrompt('— Elige tu carta —');
+      return;
+    }
+    const[a,b]=SEQ[step++];
+    swapCards(a,b);
+    setTimeout(next,355);
+  }
+  next();
+}
+function swapCards(a,b){
+  [vSlot[a],vSlot[b]]=[vSlot[b],vSlot[a]];
+  for(let i=0;i<3;i++){const w=document.getElementById(`cw${i}`);if(w)w.style.left=SLOTS[vSlot[i]]+'px';}
+}
+
+// ── Flip 2D (sin preserve-3d — compatible iOS Safari) ────────
+// El CSS anima scaleX(1→0→1). JS cambia la cara en el punto
+// intermedio (425ms = 50% de 850ms) cuando el ancho es 0.
+function flipCard2D(idx){
+  const ci=document.getElementById(`ci${idx}`);
+  ci.classList.add('flipped');
+  setTimeout(()=>{
+    const back=ci.querySelector('.cb');
+    const front=ci.querySelector('.cf-front');
+    if(back)  back.style.display='none';
+    if(front) front.style.display='flex';
+  },425);
+}
+
+// ── Elegir carta ─────────────────────────────────────────────
+function pick(idx){
+  if(busy)return;
+  busy=true;
+  setPrompt('');
+
+  for(let i=0;i<3;i++){
+    const w=document.getElementById(`cw${i}`);
+    w.classList.add('used');
+    if(i!==idx)w.classList.add('dim');
+  }
+
+  // Carta elegida → premio forzado
+  swapFace(idx, forced);
+
+  // Las otras 2 → señuelos exactos de esta ronda (sin duplicados posibles)
+  const decoys = getRoundDecoys(currentRound);
+  const others = [0,1,2].filter(i=>i!==idx);
+  swapFace(others[0], decoys[0]);
+  swapFace(others[1], decoys[1]);
+
+  // Voltear carta elegida primero, luego las otras (flip 2D — sin preserve-3d)
+  flipCard2D(idx);
+  setTimeout(()=>{
+    for(let i=0;i<3;i++) if(i!==idx) flipCard2D(i);
+  },600);
+
+  wonPrizes.push(forced);
+  // Guardar en cuanto termina la última ronda — antes de cualquier animación
+  if(currentRound===2) saveResult();
+
+  setTimeout(()=>{
+    fillRackSlot(currentRound,forced);
+    showMidResult(forced);
+    if(currentRound<2){
+      document.getElementById('next-btn').classList.remove('hidden');
+    } else {
+      setTimeout(showFinalOverlay,2000);
+    }
+  },1400);
+}
+
+// ── Rack ─────────────────────────────────────────────────────
+function fillRackSlot(roundIdx,p){
+  const s=document.getElementById(`pr${roundIdx}`);
+  s.style.setProperty('--pc',p.color);
+  s.style.setProperty('--pc-glow',p.color+'33');
+  s.className='pr-slot filled';
+  s.innerHTML=`<span class="pr-num">Turno ${roundIdx+1} ✓</span><span class="pr-icon">${p.rIcon}</span><span class="pr-name">${p.rName}</span>`;
+}
+
+// ── Entre rondas ─────────────────────────────────────────────
+function showMidResult(p){
+  const mr=document.getElementById('mid-result');
+  const header=mr.querySelector('.mid-won');
+  if(header) header.textContent = p===MALA ? '😔 Esta vez no fue…' : '✦ Ganaste ✦';
+  document.getElementById('mid-prize-text').innerHTML=`<span style="color:${p.color};text-shadow:0 0 12px ${p.color}88">${p.rIcon} ${p.rName}</span>`;
+  mr.classList.remove('hidden');
+}
+
+// ── Siguiente ronda ──────────────────────────────────────────
+function nextRound(){
+  document.getElementById('next-btn').classList.add('hidden');
+  const area=document.getElementById('area');
+  area.style.opacity='0';
+  setTimeout(()=>startRound(currentRound+1),480);
+}
+
+// ── Overlay final ────────────────────────────────────────────
+function showFinalOverlay(){
+  const real=wonPrizes.slice(0,2);
+  const mala=wonPrizes[2];
+
+  document.getElementById('r-head').textContent='¡Reclama tu premio! 🎁';
+
+  const rp=document.getElementById('r-prizes');
+  rp.innerHTML=
+    real.map(p=>`
+      <div class="fp" style="border-color:${p.color}88;box-shadow:0 0 20px ${p.color}33">
+        <span class="fp-icon">${p.rIcon}</span>
+        <div>
+          <div class="fp-name" style="color:${p.color};text-shadow:0 0 10px ${p.color}66">${p.rName}</div>
+        </div>
+      </div>`).join('')+
+    `<div class="fp fp-mala">
+      <span class="fp-icon" style="opacity:.5">${mala.rIcon}</span>
+      <div>
+        <div class="fp-name" style="color:#5050a0">${mala.rName}</div>
+        <div class="fp-msg" style="color:#3a3870">${mala.rMsg}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('r-note').innerHTML=
+    'Haz clic abajo y reclama tus premios ahora<br>¡antes de que expiren! ⏳💜';
+
+  document.getElementById('overlay').classList.add('show');
+  confetti('#a040ff');
+  setTimeout(()=>confetti('#cc80ff'),600);
+}
+
+// ── Confeti ───────────────────────────────────────────────────
+function confetti(main){
+  const C=[main,'#a040ff','#cc80ff','#fff','#e0a0ff','#6000d0'];
+  for(let i=0;i<100;i++){
+    const c=document.createElement('div');c.className='cp';
+    const s=4+Math.random()*7;
+    c.style.cssText=`left:${Math.random()*100}vw;top:-4vh;background:${C[~~(Math.random()*C.length)]};
+      width:${s}px;height:${s}px;animation-delay:${Math.random()*.9}s;animation-duration:${2+Math.random()*1.4}s;`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5500);
+  }
+}
+
+// Overlay permanente — no se puede cerrar ni reiniciar
+
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=~~(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function setPrompt(t){document.getElementById('prompt').textContent=t;}
+
+// ── Arrancar ─────────────────────────────────────────────
+function init(){
+  if(checkPlayed()){
+    document.getElementById('area').style.visibility='hidden';
+    showFinalOverlay();
+    return;
+  }
+  startRound(0);
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
